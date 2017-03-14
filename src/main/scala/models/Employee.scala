@@ -63,6 +63,8 @@ trait EmployeeRepo extends EmployeeTable {
 
   def delete(exp: Int) = db.run{ employeeTableQuery.filter(employee => employee.age <= 18).delete }
 
+  def getAll()  = db.run{ employeeTableQuery.result}
+
   def update(email: String, name: String): Future[Int] = {
     val query = employeeTableQuery.filter(_.email === email)
       .map(_.name).update(name)
