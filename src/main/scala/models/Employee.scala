@@ -59,6 +59,8 @@ trait EmployeeRepo extends EmployeeTable {
 
   def insert(emp: Employee) = db.run{ employeeTableQuery += emp }
 
+  def insertOrUpdate(emp: Employee) = db.run{ employeeTableQuery.insertOrUpdate(emp) }
+
   def delete(exp: Int) = db.run{ employeeTableQuery.filter(employee => employee.age <= 18).delete }
 
   def update(email: String, name: String): Future[Int] = {
